@@ -1,0 +1,5 @@
+messi:
+  full_name: lionel messi
+  user_name: messi
+  email:     lionelmessi@gmail.com
+  password_digest: <%= User.digest('password') %>
