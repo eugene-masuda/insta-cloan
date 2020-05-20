@@ -23,3 +23,4 @@ Things you may want to cover:
 
 * ...
 # instagram-cloan
+# insta-cloan
