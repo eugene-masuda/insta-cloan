@@ -1,0 +1,44 @@
+<% provide(:title1, "Edit user") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label "full_name" %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+
+      <%= f.label "user_name" %>
+      <%= f.text_field :user_name, class: 'form-control' %>
+      
+      <%= f.label "Website" %>
+      <%= f.text_field :website, class: 'form-control' %>
+      
+      <%= f.label "Introduction" %>
+      <%= f.text_field :introduction, class: 'form-control' %>
+      
+      <p>非公開情報</p>
+
+      <%= f.label "email" %>
+      <%= f.email_field :email, class: 'form-control' %>
+      
+      <%= f.label "phone_number" %>
+      <%= f.email_field :phone_number, class: 'form-control' %>
+
+      <%= f.label "性別" %>
+      <%= select_tag(:select_sex, options_for_select([ ['未選択', 0], ['男性', 1], ['女性', 2], ['答えたくない', 3] ]) ) %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <p></p>
+      <%= link_to "アカウントを削除する", '#' %>
+    <% end %>
+    
+    <div class="gravatar_edit">
+      <%= gravatar_for @user%>
+      <%= @user.user_name %>
+      <a href="http://gravatar.com/emails" target="_blank">change</a>
+    </div>
+
+  </div>
+</div>

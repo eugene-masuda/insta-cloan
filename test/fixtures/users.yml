@@ -3,3 +3,34 @@ messi:
   user_name: messi
   email:     lionelmessi@gmail.com
   password_digest: <%= User.digest('password') %>
+  admin: true
+  
+  
+honda:
+  full_name: keisuke honda
+  user_name: honda
+  email:     keisukehonda@gmail.com
+  password_digest: <%= User.digest('password') %>
+  
+ronald:
+  full_name: cristiano ronald
+  user_name: ronald
+  email:     cr7@gmail.com
+  password_digest: <%= User.digest('password') %>
+  
+kagawa:
+  full_name: sinji kagawa
+  user_name: kagawa
+  email:     sinjikagawa@gmail.com
+  password_digest: <%= User.digest('password') %>
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  full_name:  <%= "User #{n}" %>
+  user_name:  <%= "User #{n+100}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
+  
+
+  
