@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token
   before_save :downcase_email 
   validates :full_name, presence: true, length: { maximum:  50 }
@@ -37,6 +38,10 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+  def feed
+    Micropost.where("user_id = ?", id)
   end
   
   private
