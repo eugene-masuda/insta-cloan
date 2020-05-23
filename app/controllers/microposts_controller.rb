@@ -1,6 +1,15 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:show, :new, :create, :destroy]
   before_action :correct_user,   only: :destroy
+  
+  def show
+    @micropost = current_user.microposts.find(params[:id])
+  end
+  
+  def new
+    @micropost = current_user.microposts.build if logged_in?
+  end
+  
   def create
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])

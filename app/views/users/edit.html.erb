@@ -1,4 +1,4 @@
-<% provide(:title1, "Edit user") %>
+<% provide(:title, "Edit user") %>
 <h1>Update your profile</h1>
 <%= link_to "パスワードを変更", edit_password_reset_path %>
 <div class="row">
@@ -31,7 +31,8 @@
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
       <p></p>
-      <%= link_to "アカウントを削除する", '#' %>
+      <%= link_to "アカウントを削除する", user_path(current_user), method: :delete,
+                                  data: { confirm: "本当にこのアカウントを削除してよろしいですか？" } %>
     <% end %>
     
     <div class="gravatar_edit">

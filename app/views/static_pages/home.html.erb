@@ -1,3 +1,4 @@
+<% provide(:title, "Home") %>
 <% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
@@ -26,7 +27,7 @@
     sample application.
   </h2>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "Log in!", "#", class: "btn btn-lg btn-success" %>
+  <%= link_to "Log in!", login_path, class: "btn btn-lg btn-success" %>
 </div>
   <h2>
     Login with
