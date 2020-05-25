@@ -20,4 +20,6 @@ Rails.application.routes.draw do
  resources :microposts, only: [:show, :new, :create, :destroy]
  delete '/login', to: 'users#destroy'
  resources :relationships,       only: [:create, :destroy]
+ post   "likes/:micropost_id/create"  => "likes#create"
+ delete "likes/:micropost_id/destroy" => "likes#destroy"
 end
