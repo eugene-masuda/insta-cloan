@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_102937) do
+ActiveRecord::Schema.define(version: 2020_05_28_125129) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_102937) do
   end
 
   create_table "coments", force: :cascade do |t|
-    t.integer "micropost_id", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
+    t.integer "micropost_id"
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["micropost_id"], name: "index_coments_on_micropost_id"
@@ -43,45 +44,13 @@ ActiveRecord::Schema.define(version: 2020_05_25_102937) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "micropost_id", null: false
-    t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["micropost_id", "user_id", "created_at"], name: "index_comments_on_micropost_id_and_user_id_and_created_at"
+    t.integer "micropost_id"
+    t.integer "user_id"
+    t.text "content"
     t.index ["micropost_id"], name: "index_comments_on_micropost_id"
-    t.index ["user_id", "micropost_id", "created_at"], name: "index_comments_on_user_id_and_micropost_id_and_created_at"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "favorite_relationships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "micropost_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["micropost_id"], name: "index_favorite_relationships_on_micropost_id"
-    t.index ["user_id", "micropost_id"], name: "index_favorite_relationships_on_user_id_and_micropost_id", unique: true
-    t.index ["user_id"], name: "index_favorite_relationships_on_user_id"
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "micropost_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["micropost_id"], name: "index_favorites_on_micropost_id"
-    t.index ["user_id", "micropost_id"], name: "index_favorites_on_user_id_and_micropost_id", unique: true
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
-  create_table "ine_relationships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "micropost_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["micropost_id"], name: "index_ine_relationships_on_micropost_id"
-    t.index ["user_id", "micropost_id"], name: "index_ine_relationships_on_user_id_and_micropost_id", unique: true
-    t.index ["user_id"], name: "index_ine_relationships_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -128,20 +97,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_102937) do
     t.boolean "admin", default: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.string "uid"
-    t.string "oauth_token"
-    t.string "oauth_expires_at"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "coments", "microposts"
-  add_foreign_key "coments", "users"
-  add_foreign_key "comments", "microposts"
-  add_foreign_key "comments", "users"
   add_foreign_key "microposts", "users"
 end
