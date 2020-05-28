@@ -22,4 +22,5 @@ Rails.application.routes.draw do
  resources :relationships,       only: [:create, :destroy]
  post   "likes/:micropost_id/create"  => "likes#create"
  delete "likes/:micropost_id/destroy" => "likes#destroy"
+ resources :comments, only: [:new, :create]
 end
