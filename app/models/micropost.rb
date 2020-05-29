@@ -1,6 +1,8 @@
 class Micropost < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_many :favorite_relationships, dependent: :destroy
+  has_many :liked_by, through: :favorite_relationships, source: :user
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }

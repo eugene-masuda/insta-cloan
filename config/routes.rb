@@ -15,9 +15,15 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+  resources :users do
+  member do
+    get :following, :followers , :likes
+  end
+end
  resources :users
  resources :password_resets,     only: [:new, :create, :edit, :update]
  resources :microposts, only: [:show, :new, :create, :destroy]
  delete '/login', to: 'users#destroy'
  resources :relationships,       only: [:create, :destroy]
+ resources :favorite_relationships, only: [:create, :destroy]
 end
