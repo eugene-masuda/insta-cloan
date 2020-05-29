@@ -17,6 +17,7 @@ gem 'webpacker',  '4.0.7'
 gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.4', require: false
+gem 'active_decorator',           '1.1.1'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

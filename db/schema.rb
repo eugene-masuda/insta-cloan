@@ -33,6 +33,26 @@ ActiveRecord::Schema.define(version: 2020_05_29_002254) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "coments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "micropost_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_coments_on_micropost_id"
+    t.index ["user_id"], name: "index_coments_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "micropost_id"
+    t.integer "user_id"
+    t.text "content"
+    t.index ["micropost_id"], name: "index_comments_on_micropost_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "favorite_relationships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "micropost_id"
@@ -41,6 +61,16 @@ ActiveRecord::Schema.define(version: 2020_05_29_002254) do
     t.index ["micropost_id"], name: "index_favorite_relationships_on_micropost_id"
     t.index ["user_id", "micropost_id"], name: "index_favorite_relationships_on_user_id_and_micropost_id", unique: true
     t.index ["user_id"], name: "index_favorite_relationships_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "micropost_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
+    t.index ["user_id", "micropost_id"], name: "index_likes_on_user_id_and_micropost_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "microposts", force: :cascade do |t|

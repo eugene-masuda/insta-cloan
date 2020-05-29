@@ -8,12 +8,8 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-<<<<<<< HEAD
-  has_many :likes, dependent: :destroy
-=======
   has_many :favorite_relationships, dependent: :destroy
   has_many :likes, through: :favorite_relationships, source: :micropost
->>>>>>> comment3
   attr_accessor :remember_token
   before_save :downcase_email 
   validates :full_name, presence: true, length: { maximum:  50 }
@@ -90,7 +86,7 @@ class User < ApplicationRecord
   # 現在のユーザーがお気に入り登録してたらtrueを返す
   def like?(micropost)
     !Like.find_by(user_id: self.id, micropost_id: micropost.id).nil?
-
+  end
    # マイクロポストをライクする
   def like(micropost)
     likes << micropost
@@ -104,7 +100,7 @@ class User < ApplicationRecord
   # 現在のユーザーがライクしていたらtrueを返す
   def likes?(micropost)
     likes.include?(micropost)
->>>>>>> comment3
+
   end
   
   private
@@ -113,5 +109,4 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
-                       
 end
