@@ -8,7 +8,12 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+<<<<<<< HEAD
   has_many :likes, dependent: :destroy
+=======
+  has_many :favorite_relationships, dependent: :destroy
+  has_many :likes, through: :favorite_relationships, source: :micropost
+>>>>>>> comment3
   attr_accessor :remember_token
   before_save :downcase_email 
   validates :full_name, presence: true, length: { maximum:  50 }
@@ -71,6 +76,7 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+
   # マイクロポストをお気に入りに登録する
   def like(micropost)
     Like.create!(user_id: self.id, micropost_id: micropost.id)
@@ -84,6 +90,21 @@ class User < ApplicationRecord
   # 現在のユーザーがお気に入り登録してたらtrueを返す
   def like?(micropost)
     !Like.find_by(user_id: self.id, micropost_id: micropost.id).nil?
+
+   # マイクロポストをライクする
+  def like(micropost)
+    likes << micropost
+  end
+
+  # マイクロポストをライク解除する
+  def unlike(micropost)
+    favorite_relationships.find_by(micropost_id: micropost.id).destroy
+  end
+
+  # 現在のユーザーがライクしていたらtrueを返す
+  def likes?(micropost)
+    likes.include?(micropost)
+>>>>>>> comment3
   end
   
   private
