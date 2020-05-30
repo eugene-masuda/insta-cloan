@@ -3,12 +3,14 @@ class Micropost < ApplicationRecord
   has_one_attached :image
   has_many :favorite_relationships, dependent: :destroy
   has_many :liked_by, through: :favorite_relationships, source: :user
+  has_many :comments, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   scope :search_by_keyword, -> (keyword) {
     where("microposts.content LIKE :keyword", keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present?
   }
   has_many :notifications, dependent: :destroy
   validates :user_id, presence: true
+  validates :image, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validates :image,   content_type: { in: %w[image/jpeg image/png],
                                       message: "must be a valid image format" },

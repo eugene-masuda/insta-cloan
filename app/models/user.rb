@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :favorite_relationships, dependent: :destroy
   has_many :likes, through: :favorite_relationships, source: :micropost
+  has_many :comments, dependent: :destroy
   has_many :active_notifications,  class_name: "Notification",
                                   foreign_key: "visiter_id",
                                     dependent: :destroy

@@ -3,7 +3,10 @@ class MicropostsController < ApplicationController
   before_action :correct_user,   only: :destroy
   
   def show
-    @micropost = current_user.microposts.find(params[:id])
+    @micropost = Micropost.find_by(id: params[:id])
+    @user = @micropost.user
+    @comment = @micropost.comments.build(user_id: current_user.id)
+    @comments = @micropost.comments.all
   end
   
   def new

@@ -19,7 +19,7 @@
       <ol class="my-page-pictures row">
       	<% @microposts.each do |micropost| %>
         <li id="micropost-<%= micropost.id %>">
-          <%= image_tag micropost.display_image if micropost.image.attached? %>
+          <%=link_to image_tag(micropost.display_image), micropost if micropost.image.attached? %>
         </li>
       <% end %>  
       <%= will_paginate @microposts %>

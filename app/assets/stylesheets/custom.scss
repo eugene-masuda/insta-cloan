@@ -283,13 +283,7 @@ span.image {
     
   }
 }
-.flex{
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-}
+
 /* favorites */
 .like-btn-unlike {
   color: red;
@@ -312,7 +306,7 @@ span.image {
   left: 60px;
 }
 
-// user-show-page
+
 .my-page-pictures {
   list-style: none;
   display: block;
@@ -325,3 +319,10 @@ span.image {
 }
 
 
+.comment {
+  margin: 15px 0 0;
+}
+.comment-timestamp {
+  color: $gray-light;
+  float: right;
+} 

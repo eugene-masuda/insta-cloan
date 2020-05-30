@@ -29,6 +29,8 @@ end
 
  post   "likes/:micropost_id/create"  => "likes#create"
  delete "likes/:micropost_id/destroy" => "likes#destroy"
+ resources :comments, only: [:create, :destroy]
+ post "/microposts/:id", to: "comments#create"
 
 
  resources :favorite_relationships, only: [:create, :destroy]

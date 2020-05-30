@@ -1,11 +1,22 @@
-<span class="content">
-  <%= image_tag @micropost.picture.url if @micropost.picture? %>
-</span>
-
-<div class="microuser">
-  <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
-  <span class="user"><%= link_to @micropost.user.user_name, @micropost.user %></span>
+<% provide(:title, "Micropost") %>
+<h3>投稿</h3>
+<div class="row">
+  <section class="col-md-4">
+    <%= link_to gravatar_for(@user, size: 50), @user %>
+    <span class="user"><%= link_to @user.user_name, @user %></span><br>
+    <%= @micropost.content %><br>
+    <%= image_tag @micropost.display_image %>
+    <span>
+    　<%= @micropost.content %>
+    </span>
+  </section>
+  <section class="col-md-6">
+     <%= render "comments/comment_form" %>
+     <% if @comments %>
+       <div class="comment">
+         <p>コメント一覧</p>
+         <%= render @comments %>
+       </div>
+     <% end %>
+  </section>
 </div>
-<span>
-  <%= @micropost.content %>
-</span>
