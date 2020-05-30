@@ -16,9 +16,12 @@
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
+      <ol class="my-page-pictures row">
+      	<% @microposts.each do |micropost| %>
+        <li id="micropost-<%= micropost.id %>">
+          <%= image_tag micropost.display_image if micropost.image.attached? %>
+        </li>
+      <% end %>  
       <%= will_paginate @microposts %>
     <% end %>
   </div>

@@ -4,7 +4,7 @@
     <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
     <span class="user"><%= link_to @micropost.user.user_name, @micropost.user %></span>
   </div>
-  <span class="content">
+  <span class="content ">
     <%= image_tag micropost.display_image if micropost.image.attached? %>
     <%= render 'users/like_form' %>
     <%= @micropost.content %>

@@ -249,9 +249,11 @@ input {
   .content {
     display: block;
     margin-left: 60px;
+      
     img {
       display: block;
       padding: 5px 0;
+      
     }
   }
   .timestamp {
@@ -275,9 +277,18 @@ aside {
 
 span.image {
   margin-top: 10px;
+    
   input {
     border: 0;
+    
   }
+}
+.flex{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
 }
 /* favorites */
 .like-btn-unlike {
@@ -300,9 +311,17 @@ span.image {
   position: relative;
   left: 60px;
 }
-/* notification */
-.notification_form{
-  text-align: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #999;
+
+// user-show-page
+.my-page-pictures {
+  list-style: none;
+  display: block;
+  padding: 0;
+  li {
+    display: inline-block;
+    margin: 4px auto 0;
+    padding: 0;
+  }
 }
+
+
