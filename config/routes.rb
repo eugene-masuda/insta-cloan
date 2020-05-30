@@ -23,12 +23,13 @@ end
  resources :users
  resources :password_resets,     only: [:new, :create, :edit, :update]
  resources :microposts, only: [:show, :new, :create, :destroy]
+ resources :notifications, only: :index
  delete '/login', to: 'users#destroy'
  resources :relationships,       only: [:create, :destroy]
 
  post   "likes/:micropost_id/create"  => "likes#create"
  delete "likes/:micropost_id/destroy" => "likes#destroy"
- resources :comments, only: [:new, :create]
+
 
  resources :favorite_relationships, only: [:create, :destroy]
 
