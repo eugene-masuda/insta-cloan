@@ -4,12 +4,6 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-         <li>
-            <%= link_to 'Notice', notifications_path, class: 'btn' %>
-            <% if unchecked_notifications.any? %>
-              <%= content_tag :span, '', class: "glyphicon glyphicon-bell white" %>
-            <% end %>
-         </li>
          <li><%= link_to "Users", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

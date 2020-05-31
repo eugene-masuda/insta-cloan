@@ -84,6 +84,23 @@ class UsersController < ApplicationController
     render 'show_like'
   end
   
+  def facebook_login
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    result = @user.save(context: :facebook_login)
+    if result
+      log_in @user
+      redirect_to @user
+    else
+      redirect_to auth_failure_path
+    end
+  end
+
+  # FB認証（失敗時）
+  def auth_failure 
+    @user = User.new
+    render '任意のアクション'
+  end
+  
   private
 
   def user_params

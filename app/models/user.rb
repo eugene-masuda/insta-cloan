@@ -115,6 +115,19 @@ class User < ApplicationRecord
     end
   end
   
+  def self.from_omniauth(auth)
+    user = User.where('email = ?', auth.info.email).first
+    if user.blank?
+       user = User.new
+    end
+    user.uid = auth.uid
+    user.user_name = auth.info.name
+    user.email = auth.info.email
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user
+  end
+  
   private
 
   # メールアドレスをすべて小文字にする

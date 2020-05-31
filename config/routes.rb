@@ -5,6 +5,8 @@ Rails.application.routes.draw do
  get 'users/new'
  root 'static_pages#home'
  get  'static_pages/home'
+　get '/auth/:provider/callback', to: 'users#facebook_login', as: :auth_callback
+　get '/auth/failure', to: 'users#auth_failure', as: :auth_failure
  get  '/signup',  to: 'users#new'
  post '/signup',  to: 'users#create'
  get    '/login',   to: 'sessions#new'
@@ -31,5 +33,5 @@ end
  post "/microposts/:id", to: "comments#create"
  resources :notifications, only: [:index]
  resources :favorite_relationships, only: [:create, :destroy]
-
+ 
 end
