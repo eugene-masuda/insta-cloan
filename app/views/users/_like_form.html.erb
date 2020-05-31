@@ -1,7 +1,0 @@
-<div id="like-<%= @micropost.id %>">
-  <% if !current_user.nil? && current_user.like?(@micropost) %>
-    <%= render 'users/unlike' %>
-  <% else %>
-    <%= render 'users/like' %>
-  <% end %>
-</div>

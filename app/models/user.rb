@@ -73,21 +73,6 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
-
-  # マイクロポストをお気に入りに登録する
-  def like(micropost)
-    Like.create!(user_id: self.id, micropost_id: micropost.id)
-  end
-
-  # マイクロポストをお気に入り解除する
-  def unlike(micropost)
-    Like.find_by(user_id: self.id, micropost_id: micropost.id).destroy
-  end
-
-  # 現在のユーザーがお気に入り登録してたらtrueを返す
-  def like?(micropost)
-    !Like.find_by(user_id: self.id, micropost_id: micropost.id).nil?
-  end
    # マイクロポストをライクする
   def like(micropost)
     likes << micropost
@@ -104,16 +89,7 @@ class User < ApplicationRecord
 
   end
   
-  # フォロー通知のメソッド
-  def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",
-                              current_user.id, self.id, 'follow'])
-    if temp.blank?
-      notification = current_user.active_notifications.build(
-                     visited_id: self.id, action: 'follow')
-      notification.save if notification.valid?
-    end
-  end
+
   
   def self.from_omniauth(auth)
     user = User.where('email = ?', auth.info.email).first
