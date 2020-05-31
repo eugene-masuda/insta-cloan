@@ -5,8 +5,8 @@ Rails.application.routes.draw do
  get 'users/new'
  root 'static_pages#home'
  get  'static_pages/home'
-　get '/auth/:provider/callback', to: 'users#facebook_login', as: :auth_callback
-　get '/auth/failure', to: 'users#auth_failure', as: :auth_failure
+ get '/auth/:provider/callback', to: 'users#facebook_login', as: :auth_callback
+ get '/auth/failure', to: 'users#auth_failure', as: :auth_failure
  get  '/signup',  to: 'users#new'
  post '/signup',  to: 'users#create'
  get    '/login',   to: 'sessions#new'
