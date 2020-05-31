@@ -21,12 +21,7 @@ class Micropost < ApplicationRecord
     image.variant(resize_to_limit: [200, 200])
   end
   
-  def create_notification_by(current_user)
-    notification = current_user.active_notifications.new(
-      micropost_id: id,
-      visited_id: user.id,
-      action: "like"
-      )
-    notification.save if notification.valid?
-  end    
+ 
+
+
 end

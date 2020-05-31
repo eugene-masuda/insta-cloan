@@ -11,12 +11,6 @@ class User < ApplicationRecord
   has_many :favorite_relationships, dependent: :destroy
   has_many :likes, through: :favorite_relationships, source: :micropost
   has_many :comments, dependent: :destroy
-  has_many :active_notifications,  class_name: "Notification",
-                                  foreign_key: "visiter_id",
-                                    dependent: :destroy
-  has_many :passive_notifications, class_name: "Notification",
-                                  foreign_key: "visited_id",
-                                    dependent: :destroy
   attr_accessor :remember_token
   before_save :downcase_email 
   validates :full_name, presence: true, length: { maximum:  50 }
@@ -108,6 +102,17 @@ class User < ApplicationRecord
   def likes?(micropost)
     likes.include?(micropost)
 
+  end
+  
+  # フォロー通知のメソッド
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",
+                              current_user.id, self.id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.build(
+                     visited_id: self.id, action: 'follow')
+      notification.save if notification.valid?
+    end
   end
   
   private

@@ -6,7 +6,7 @@ class FavoriteRelationshipsController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     @user = User.find(@micropost.user_id)
     current_user.like(@micropost)
-    @micropost.create_notification_by(current_user)
+    @micropost.create_notification_like!(current_user)
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
       format.js
