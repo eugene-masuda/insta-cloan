@@ -12,5 +12,5 @@ rails tutorialはコピペしているだけだが、オリジナルアプリを
 
 サイトデザインが難しいと感じたので、デザインがおすすめのテンプレートサイトなどを知っていたら教えてください。
 
-heroku
+heroku url
  https://peaceful-depths-36882.herokuapp.com/
